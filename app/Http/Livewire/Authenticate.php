@@ -1,78 +1,77 @@
 <?php
 
 namespace App\Http\Livewire;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 use Livewire\Component;
 
+
+
 class Authenticate extends Component
 {
+    public $users, $email, $password, $name;
+    public $register = false;
+    protected $listeners = ['log-out' => 'logout'];
+    
     public function render()
     {
         return view('livewire.auth');
     }
 
-    public function customLogin(Request $request)
+    private function resetInputFields(){
+        $this->name = '';
+        $this->email = '';
+        $this->password = '';
+    }
+
+    public function login()
     {
-        $request->validate([
-            'email' => 'required',
+        $validatedDate = $this->validate([
+            'email' => 'required|email',
             'password' => 'required',
         ]);
-   
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('Signed in');
+         
+        if(Auth::attempt(array('email' => $this->email, 'password' => $this->password))){
+                redirect('/');
+        }else{
+            session()->flash('error', 'email and password are wrong.');
         }
-  
-        return redirect("login")->withSuccess('Login details are not valid');
     }
-
+ 
     public function registration()
     {
-        return view('auth.registration');
+        $this->register = !$this->register;
     }
-      
-    public function customRegistration(Request $request)
-    {  
-        $request->validate([
+ 
+    public function registerStore()
+    {
+        $v = $this->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
-           
-        $data = $request->all();
-        $check = $this->create($data);
-         
-        return redirect("dashboard")->withSuccess('You have signed-in');
+ 
+        $this->password = Hash::make($this->password); 
+ 
+        $data = [ 'name' => $this->name, 
+                  'email' => $this->email,
+                  'password' => $this->password
+                ];
+ 
+        User::create($data);
+ 
+        session()->flash('message', 'You have been successfully registered.');
+ 
+        $this->resetInputFields();
+ 
     }
 
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
-    }    
-    
-    public function dashboard()
-    {
-        if(Auth::check()){
-            return view('dashboard');
-        }
-  
-        return redirect("login")->withSuccess('You are not allowed to access');
-    }
-    
-    public function signOut() {
+    public function logout(){
         Session::flush();
         Auth::logout();
-  
-        return Redirect('login');
+        return redirect('signin');
     }
 }
