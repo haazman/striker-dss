@@ -20,5 +20,6 @@ class ALternatif extends Model
         'attitude',
         'indeks_vikor',
         'team_id',
+        'image_path',
     ];
 }

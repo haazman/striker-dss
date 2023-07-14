@@ -44,7 +44,7 @@
             </ul>
             @guest
             <a href="{{'signin'}}"
-              class="middle none center hidden rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 py-4 px-5 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
+              class="middle none center hidden rounded-lg bg-gradient-to-tr from-blue-700 to-blue-400 py-4 px-5 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-700/20 transition-all hover:shadow-lg hover:shadow-blue-700/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
               data-ripple-light="true"
             >
               <span>Sign In</span>
@@ -62,7 +62,7 @@
         role="menu"
         data-popover="profile-menu"
         data-popover-placement="bottom"
-        class="absolute z-10 flex min-w-[180px] flex-col gap-2 overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-500 shadow-lg shadow-blue-gray-500/10 focus:outline-none"
+        class="absolute z-10 flex min-w-[180px] flex-col gap-2 overflow-auto rounded-md border border-blue-gray-50 bg-white p-3 font-sans text-sm font-normal text-blue-gray-700 shadow-lg shadow-blue-gray-700/10 focus:outline-none"
       >
         <button
           tabIndex="-1"
@@ -193,7 +193,7 @@
       </ul>
         @endauth
             <button
-              class="middle none relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] rounded-lg text-center font-sans text-xs font-medium uppercase text-blue-gray-500 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
+              class="middle none relative ml-auto h-6 max-h-[40px] w-6 max-w-[40px] rounded-lg text-center font-sans text-xs font-medium uppercase text-blue-gray-700 transition-all hover:bg-transparent focus:bg-transparent active:bg-transparent disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:hidden"
               data-collapse-target="nav"
             >
               <span class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 transform">
@@ -242,7 +242,7 @@
                 </li>
               </ul>
               <button
-                class="middle none center mb-2 block w-full rounded-lg bg-gradient-to-tr from-blue-600 to-blue-400 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                class="middle none center mb-2 block w-full rounded-lg bg-gradient-to-tr from-blue-700 to-blue-400 py-2 px-4 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-700/20 transition-all hover:shadow-lg hover:shadow-blue-700/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button"
                 data-ripple-light="true"
               >
@@ -264,7 +264,7 @@
             <li>
               <a
                 href="#"
-                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-500 focus:text-blue-500"
+                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-700 focus:text-blue-700"
               >
                 About Us
               </a>
@@ -272,7 +272,7 @@
             <li>
               <a
                 href="#"
-                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-500 focus:text-blue-500"
+                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-700 focus:text-blue-700"
               >
                 License
               </a>
@@ -280,7 +280,7 @@
             <li>
               <a
                 href="#"
-                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-500 focus:text-blue-500"
+                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-700 focus:text-blue-700"
               >
                 Contribute
               </a>
@@ -288,7 +288,7 @@
             <li>
               <a
                 href="#"
-                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-500 focus:text-blue-500"
+                class="block font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased transition-colors hover:text-blue-700 focus:text-blue-700"
               >
                 Contact Us
               </a>
