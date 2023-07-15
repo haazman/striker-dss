@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\LogoutController;
+use App\Http\Livewire\AddStriker;
+use App\Http\Livewire\Authenticate;
+use App\Http\Livewire\Counter;
+use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Home::class);
+Route::get('/add', AddStriker::class)->middleware('auth');
+Route::get('/count', Counter::class);
+Route::get('/signin', Authenticate::class)->name('login');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+
