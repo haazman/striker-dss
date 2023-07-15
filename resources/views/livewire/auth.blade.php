@@ -113,7 +113,7 @@ Sign Up
         <form>
         <div class="flex flex-col gap-10 justify-center items-center m-5">
           <div class="relative h-11 w-full min-w-[200px]">
-            <input type="email" wire:model="email"
+            <input type="email" wire:model.defer="email"
               placeholder="Email"
               class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-blue-700  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             />
@@ -124,7 +124,7 @@ Sign Up
           </div>
 
           <div class="relative h-11 w-full min-w-[200px]">
-            <input type="password" wire:model="password"
+            <input type="password" wire:model.defer="password"
               placeholder="Password"
               class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-blue-700  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
             />
@@ -134,7 +134,7 @@ Sign Up
             @error('password') <span class="text-red-700 ">{{ $message }}</span>@enderror
           </div>
 
-          <button wire:click.prevent="login"
+          <button data-dialog-target="dialog-xs" wire:click.prevent="login"
   class="middle none center rounded-lg bg-blue-700  py-3 w-full font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-700 /20 transition-all hover:shadow-lg hover:shadow-blue-700 /40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
   data-ripple-light="true"
 >
@@ -148,4 +148,25 @@ Sign Up
         </div>
 </div>
 @endif
+</div>
+
+<div wire:loading>
+  <div wire:ignore
+    data-dialog-backdrop="dialog-xs"
+    data-dialog-backdrop-close="true"
+    class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300"
+  >
+    <div
+      data-dialog="dialog-xs"
+      class="relative m-4 w-1/4 min-w-[25%] max-w-[25%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl"
+    >
+      <div class="flex shrink-0 items-center p-4 font-sans text-2xl font-semibold leading-snug text-blue-gray-900 antialiased">
+        Loading...
+      </div>
+      <div class="flex justify-center border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 p-4 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
+          <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32"></div>
+      </div>
+     
+    </div>
+  </div>
 </div>

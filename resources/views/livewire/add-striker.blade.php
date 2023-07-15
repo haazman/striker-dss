@@ -1,9 +1,9 @@
 <div class="flex flex-col items-center w-full min-h-screen">
   <div class="flex w-full flex-col items-center justify-center m-10">
   <div class="w-full md:w-4/5">
-    <div class="relative right-0 w-full">
+    <div class="right-0 w-full">
       <ul wire:ignore
-        class="relative flex list-none flex-wrap rounded-xl bg-slate-400 p-1"
+        class="flex list-none flex-wrap rounded-xl bg-slate-400 p-1"
         data-tabs="tabs"
         role="list"
       >
@@ -75,22 +75,25 @@
       <td> Name </td>
       <td> Action {{$deleteTeamId}} </td> 
       </tr>
-    @foreach($teams as $team)
+    @foreach($teams as $key => $team)
     
     <tr class="bg-white rounded-lg" wire:key="team-{{$team->id}}">
-      <td class="font-light"> {{++$x}}. </td>
+      <td class="font-light"> {{$teams->firstItem() + $key}}. </td>
       <td class="font-light"> {{$team->team_name}} </td>
       <td class="font-light"> 
         <div class="flex flex-row justify-center gap-3">
         <button wire:key="showTeam-{{$team->id}}"> <i class="material-icons"> visibility </i> </button>
         <button wire:key="editTeam-{{$team->id}}"> <i class="material-icons"> edit </i> </button> 
-        <button onclick="confirm('Are you sure you want to delete this team?')" wire:click="deleteTeamId({{$team->id}})"> <i class="material-icons"> delete </i> </button>
+        <button onclick="confirm('Are you sure you want to delete this team?') || event.stopImmediatePropagation()" wire:click="deleteTeamId({{$team->id}})"> <i class="material-icons"> delete </i> </button>
         </div>
       </td>
     </tr>
   
     @endforeach
   </table>
+  <div class="m-3">
+  {{ $teams->links() }}
+  </div>
                   </div>
                   
     
@@ -253,64 +256,30 @@
       <td> Name </td>
       <td> Action </td>
       </tr>
-    @foreach($alternatif as $alternatifs)
+    @foreach($alternatif as $key => $alternatifs)
     
     <tr class="bg-white rounded-lg">
-      <td  class="font-light"> {{++$i}}. </td>
+      <td  class="font-light"> {{$alternatif->firstItem() + $key  }}. </td>
       <td  class="font-light"> {{$alternatifs->name}} </td>
       <td  class="font-light"> 
         <div class="flex flex-row justify-center gap-3">
         <button> <i class="material-icons"> visibility </i> </button>
         <button> <i class="material-icons"> edit </i> </button> 
-        <button onclick="confirm('Are you sure you want to delete this candidate?')" wire:click.prevent="deleteCandidateId({{$alternatifs->id}})"> <i class="material-icons"> delete </i> </button>
+        <button onclick="confirm('Are you sure you want to delete this candidate?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCandidateId({{$alternatifs->id}})"> <i class="material-icons"> delete </i> </button>
         </div>
       </td>
     </tr>
   
     @endforeach
   </table>
+  <div class="m-3">
+    {{ $alternatif->links() }}
+    </div>
   </div>
           </p>
         </div>
       </div>
     </div>
-                  <!-- Delete Modal -->
-<div>
-<div
-data-dialog-backdrop="dialog" wire:ignore.self
-data-dialog-close="true"
-class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300"
->
-<div
-  data-dialog="dialog" wire:ignore.self
-  class="relative m-4 w-2/5 min-w-[40%] max-w-[40%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl"
->
-  <div class="flex shrink-0 items-center p-4 font-sans text-2xl font-semibold leading-snug text-blue-gray-900 antialiased">
-    Are you sure you want to delete this item?
-  </div>
-  <div class="relative border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 p-4 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
-    Your action cannot be undone.
-  </div>
-  <div class="flex shrink-0 flex-wrap items-center justify-end p-4 text-blue-gray-500">
-    <button
-      data-ripple-dark="true"
-      data-dialog-close="true"
-      class="middle none center mr-1 rounded-lg py-3 px-6 font-sans text-xs font-bold uppercase text-black-500 transition-all hover:bg-red-500/10 active:bg-red-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-    >
-      Cancel
-    </button>
-    <button
-      wire:click.prevent="delete"
-      data-ripple-light="true"
-      data-dialog-close="true"
-      class="middle none center rounded-lg bg-gradient-to-tr from-red-600 to-red-400 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-    >
-      Confirm
-    </button>
-  </div>
-</div>
-</div>
-</div>
   </div>      
       
     

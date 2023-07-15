@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use App\Models\Team;
+use Livewire\WithPagination;
 use App\Models\Alternatif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,28 +14,29 @@ use Illuminate\Support\Facades\Storage;
 class AddStriker extends Component
 {
     use WithFileUploads;
+    use WithPagination;
+
     public $data, $team_name, $candidateName, $team_id, $stamina, $posture, $deleteTeamId = '', $deleteCandidateId = '',
     $finishing, $dribbling, $header, $attitude, $photo, $i = 0, $x = 0, $validateTeam, $upload_path = "";
     public $file;
-    public $original_filename = "";
     public $filepath = "";
     public $success = 0;
     public $isImage = false;
-    public $alternatif, $teams;
     public $increment = 0;
 
     public function render()
     {
         return view('livewire.add-striker', [
-            'teams' =>  Team::where('user_id', Auth::user()->id)->get(),
+            'teams' =>  Team::where('user_id', Auth::user()->id)->paginate(5),
+            'alternatif' =>  Alternatif::where('team_id', $this->team_id)->paginate(5),
         ]);
 
     }
 
     
     public function boot(){
-        $this->teams = Team::where('user_id', Auth::user()->id)->get();
-       $this->alternatif = Alternatif::where('team_id', $this->team_id)->get();
+        $teams = Team::where('user_id', Auth::user()->id)->paginate(5);
+       $alternatif = Alternatif::paginate(5)->where('team_id', $this->team_id);
        $tmp = Storage::allFiles('public/files');
         Storage::delete($tmp);
     }
@@ -44,7 +46,7 @@ class AddStriker extends Component
         if($team){
             $team->delete();
         }
-        $this->teams = Team::where('user_id', Auth::user()->id)->get();
+        $teams = Team::paginate(5)->where('user_id', Auth::user()->id);
         session()->flash("message", "Deleted Successfully");
     }
     public function deleteCandidateId($id){
@@ -52,7 +54,7 @@ class AddStriker extends Component
         if($candidate){
             $candidate->delete();
         }
-        $this->alternatif = Alternatif::where('team_id', $this->team_id)->get();
+        $alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
         session()->flash("message", "Deleted Successfully");
     }
 
@@ -78,7 +80,7 @@ class AddStriker extends Component
     ];
 
     Team::create($data);
-    $this->teams = Team::where('user_id', Auth::user()->id)->get();
+    $teams = Team::paginate(5)->where('user_id', Auth::user()->id);
 
     session()->flash('message', 'Team Added Successfully.');
  
@@ -87,6 +89,7 @@ class AddStriker extends Component
 
 public function insertCandidate(Request $request){
     $v = $this->validate([
+        'team_id' => 'required',
         'candidateName' => 'required',
         'stamina' => 'required',
         'posture' => 'required',
@@ -115,7 +118,7 @@ $data = [
 
 Alternatif::create($data);
 
-$this->alternatif = Alternatif::where('team_id', $this->team_id)->get();
+$alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
 
 session()->flash('message', 'Candidate Added Successfully.');
 
@@ -127,9 +130,11 @@ $tmp = Storage::allFiles('public/files');
 
 
 public function updated(){
-    $this->alternatif = Alternatif::where('team_id', $this->team_id)->get();
+    $alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
+    $teams = Team::where('user_id', Auth::user()->id)->paginate(5);
     $this->resetValidation();
     $this->resetErrorBag();
+    $this->resetPage();
 }
 
 
@@ -164,8 +169,8 @@ public function delete(){
     if($candidate){
         $candidate->delete();
     }
-    $this->teams = Team::where('user_id', Auth::user()->id)->get();
-    $this->alternatif = Alternatif::where('team_id', Auth::user()->id)->get();
+    $teams = Team::where('user_id', Auth::user()->id)->paginate(5);
+    $alternatif = Alternatif::where('team_id', Auth::user()->id)->paginate(5);
     session()->flash("message", "Deleted Successfully");
 }
 }
