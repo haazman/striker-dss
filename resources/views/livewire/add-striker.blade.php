@@ -250,21 +250,21 @@
        <!-- Modal -->
     </form>
 
-    <table class="w-full rounded-lg border text-center border-none shadow-lg bg-slate-50">
-      <tr>
+    <table class="w-full rounded-lg border text-center border-none shadow-lg">
+      <tr class="bg-slate-100">
         <td> No. </td>
       <td> Name </td>
       <td> Action </td>
       </tr>
     @foreach($alternatif as $key => $alternatifs)
     
-    <tr class="bg-white rounded-lg">
+    <tr class="bg-slate-50 rounded-lg">
       <td  class="font-light"> {{$alternatif->firstItem() + $key  }}. </td>
       <td  class="font-light"> {{$alternatifs->name}} </td>
       <td  class="font-light"> 
         <div class="flex flex-row justify-center gap-3">
-        <button> <i class="material-icons"> visibility </i> </button>
-        <button> <i class="material-icons"> edit </i> </button> 
+        <button wire:click.prevent=""> <i class="material-icons"> visibility </i> </button>
+        <button wire:click.prevent> <i class="material-icons"> edit </i> </button> 
         <button onclick="confirm('Are you sure you want to delete this candidate?') || event.stopImmediatePropagation()" wire:click.prevent="deleteCandidateId({{$alternatifs->id}})"> <i class="material-icons"> delete </i> </button>
         </div>
       </td>

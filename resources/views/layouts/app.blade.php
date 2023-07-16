@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-slate-50">
+<html lang="en" class="bg-white">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,13 @@
     <link
   href="https://fonts.googleapis.com/icon?family=Material+Icons"
   rel="stylesheet"
+/>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+  integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+  crossorigin="anonymous"
 />
     <title>Striker DSS</title>
     @livewireStyles
@@ -32,7 +39,7 @@
               @auth
               <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
                 <a href="{{'add'}}" class="flex items-center" href="#">
-                  Add Striker
+                  Dashboard
                 </a>
               </li>
               <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
@@ -312,6 +319,10 @@
 <script type="text/javascript" src="assets/scripts/dismissible.js"></script>
 <script src="assets/scripts/dialog.js"></script>
 <script src="assets/scripts/tabs.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 
 </html>

@@ -45,6 +45,7 @@
 </div>
 </div>
   @endif
+
 @if($register)
 <div class="flex flex-col items-center min-h-screen">
   <h3 class="block font-sans mt-10 mb-5 text-2xl font-semibold leading-snug tracking-normal text-inherit antialiased">
@@ -54,10 +55,24 @@
 
   <div class="shadow-md border bg-white w-full md:w-1/2 rounded-lg">
       <form>
-        
+
       <div class="flex flex-col gap-10 justify-center items-center m-5">
+        <div class="flex flex-col items-center justify-center">
+          <input wire:model="photo" type="file" accept="image/png, image/jpeg" class="hidden" id="photo">
+          <label for="photo">
+            @if($success == 1)
+                 <img class="relative inline-block h-36 w-36 rounded-full object-cover object-center"
+                 alt="Image placeholder" src="{{ asset($filepath) }}">
+            @else
+            <img class="relative inline-block h-36 w-36 rounded-full object-cover object-center"
+            alt="Image placeholder" src="assets/users/default.jpg">
+            @endif
+          </label>
+          @error('photo') <span class="text-red-700">{{ $message }}</span>   @enderror
+         </div>
+
         <div class="relative h-11 w-full min-w-[200px]">
-          <input wire:model="name"
+          <input wire:model.defer="name"
             placeholder="Full Name" type="text"
             class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-blue-700  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
           />
@@ -68,7 +83,7 @@
         </div>
 
         <div class="relative h-11 w-full min-w-[200px]">
-          <input wire:model="email"
+          <input wire:model.defer="email"
             placeholder="Email" type="email"
             class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-blue-700  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
           />
@@ -79,7 +94,7 @@
         </div>
 
         <div class="relative h-11 w-full min-w-[200px]">
-          <input wire:model="password"
+          <input wire:model.defer="password"
             placeholder="Password" type="password"
             class="peer h-full w-full border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-blue-700  focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
           />
