@@ -37,7 +37,7 @@
               </li>
               <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
                 <a class="flex items-center" href="#">
-                  Rank
+                  Compare
                 </a>
               </li>
               @endauth
