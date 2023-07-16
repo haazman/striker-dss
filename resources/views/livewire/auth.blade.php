@@ -166,18 +166,15 @@ Sign Up
 </div>
 
 <div wire:loading>
-  <div wire:ignore
+  <div
     data-dialog-backdrop="dialog-xs"
     data-dialog-backdrop-close="true"
     class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300"
   >
     <div
       data-dialog="dialog-xs"
-      class="relative m-4 w-1/4 min-w-[25%] max-w-[25%] rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl"
+      class="relative m-4 w-fit rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl"
     >
-      <div class="flex shrink-0 items-center p-4 font-sans text-2xl font-semibold leading-snug text-blue-gray-900 antialiased">
-        Loading...
-      </div>
       <div class="flex justify-center border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 p-4 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
           <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32"></div>
       </div>
