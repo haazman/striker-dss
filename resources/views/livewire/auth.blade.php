@@ -58,7 +58,7 @@
 
       <div class="flex flex-col gap-10 justify-center items-center m-5">
         <div class="flex flex-col items-center justify-center">
-          <input wire:model="photo" type="file" accept="image/png, image/jpeg" class="hidden" id="photo">
+          <input wire:model="photo" type="file" accept="image/png, image/jpeg, image/jpg" class="hidden" id="photo">
           <label for="photo">
             @if($success == 1)
                  <img class="relative inline-block h-36 w-36 rounded-full object-cover object-center"
@@ -171,12 +171,12 @@ Sign Up
     data-dialog-backdrop-close="true"
     class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300"
   >
-    <div
+    <div wire:ignore
       data-dialog="dialog-xs"
       class="relative m-4 w-fit rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl"
     >
-      <div class="flex justify-center border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 p-4 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
-          <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-32 w-32"></div>
+      <div class="flex justify-center m-5 border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 p-2 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
+          <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-700 border-8 h-12 w-12"></div>
       </div>
      
     </div>
