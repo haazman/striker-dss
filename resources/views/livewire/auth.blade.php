@@ -175,7 +175,7 @@ Sign Up
       data-dialog="dialog-xs"
       class="relative m-4 w-fit rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl"
     >
-      <div class="flex justify-center m-5 border-t border-b border-t-blue-gray-100 border-b-blue-gray-100 p-2 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
+      <div class="flex justify-center m-5 p-2 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
           <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-700 border-8 h-12 w-12"></div>
       </div>
      
