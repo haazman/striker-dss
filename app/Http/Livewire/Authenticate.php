@@ -52,19 +52,32 @@ class Authenticate extends Component
  
     public function registerStore()
     {
-        $v = $this->validate([
+        $this->validate([
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
         ]);
- 
         $this->password = Hash::make($this->password); 
- 
-        $data = [ 'name' => $this->name, 
-                  'email' => $this->email,
-                  'password' => $this->password
-                ];
- 
+
+        if($this->photo){
+            $this->validate([
+                'photo' => 'mimes:png,jpg,jpeg|max:2048',
+            ]);
+            
+            $filepath = $this->photo->store('users', 'public');
+
+            $data = [ 'name' => $this->name, 
+            'email' => $this->email,
+            'password' => $this->password,
+            'image_path' => $filepath,
+          ];
+        }else{
+            $data = [ 'name' => $this->name, 
+            'email' => $this->email,
+            'password' => $this->password
+          ];
+        }
+
         User::create($data);
  
         session()->flash('message', 'You have been successfully registered.');

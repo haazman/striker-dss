@@ -57,12 +57,13 @@
                 <span>Sign In</span>
           </a>
           @endguest
+            </ul>
 
-          @auth
+            @auth
         <img
         alt="tania andrew"
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
-        class="relative inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
+        src="{{asset('storage/'.Auth::user()->image_path)}}"
+        class="hidden relative lg:inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
         data-popover-target="profile-menu"
       />
       <ul
@@ -152,7 +153,6 @@
         </a>
       </ul>
         @endauth
-            </ul>
            
 
         
@@ -226,7 +226,7 @@
           <div class="flex items-center flex-row gap-2">
         <img
         alt="tania andrew"
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+        src="{{asset('storage/'.Auth::user()->image_path)}}"
         class="relative inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
         data-popover-target="profile-menu"
       />

@@ -65,7 +65,7 @@
                  alt="Image placeholder" src="{{ asset($filepath) }}">
             @else
             <img class="relative inline-block h-36 w-36 rounded-full object-cover object-center"
-            alt="Image placeholder" src="assets/users/default.jpg">
+            alt="Image placeholder" src="{{asset('storage/users/default.jpg')}}">
             @endif
           </label>
           @error('photo') <span class="text-red-700">{{ $message }}</span>   @enderror

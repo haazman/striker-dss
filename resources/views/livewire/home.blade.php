@@ -1,7 +1,7 @@
 <div data-aos="fade-left" class="flex flex-col md:flex-row w-full items-center justify-center md:justify-between min-h-screen">
 <div class="flex flex-col w-full items-center justify-center gap-10">
-    <h1 class="text-5xl font-sans font-thin mx-10"> Striker DSS </h1>
-    <p class="mx-10 font-sans text-xl font-light leading-relaxed text-inherit antialiased">
+    <h1 class="text-3xl lg:text-5xl font-sans font-thin mx-10"> Striker DSS </h1>
+    <p class="mx-10 font-sans text-lg lg:text-xl font-light leading-relaxed text-inherit antialiased">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula nulla dolor, eu porttitor tellus sodales ut. Nunc a lectus neque.
       </p>
 </div>
@@ -9,10 +9,10 @@
 </div>
 
 <div class="flex w-full flex-col items-center gap-24 justify-center">
-    <h1 data-aos="fade" class="text-5xl text-center font-sans font-light"> Choose Your Striker </h1>
+    <h1 data-aos="fade" class="text-3xl lg:text-5xl text-center font-sans font-light"> Choose Your Striker </h1>
     <div data-aos="fade-right" class="flex flex-row justify-between">
       <img src="assets/soccer-2.png" class="hidden lg:flex w-1/2">
-    <p class="mx-10 block font-sans text-xl font-light leading-relaxed text-inherit antialiased">
+    <p class="mx-10 block font-sans text-lg lg:text-xl font-light leading-relaxed text-inherit antialiased">
         Nam id fringilla neque, a scelerisque orci. Pellentesque nec augue ut neque maximus viverra posuere sit amet dolor. Curabitur eu risus at augue aliquet tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum placerat semper. Pellentesque vestibulum augue nibh, et faucibus turpis rutrum eu. Aliquam rutrum ornare est, et tincidunt elit maximus ac. </p>
     </div>
 
