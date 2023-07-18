@@ -49,7 +49,8 @@
                 </a>
               </li>
               @endauth
-              @guest
+            </ul>
+            @guest
               <a href="{{url('signin')}}"
                 class="middle none center hidden rounded-lg bg-gradient-to-tr from-blue-700 to-blue-400 py-4 px-5 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-700/20 transition-all hover:shadow-lg hover:shadow-blue-700/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none lg:inline-block"
                 data-ripple-light="true"
@@ -57,7 +58,6 @@
                 <span>Sign In</span>
           </a>
           @endguest
-            </ul>
 
             @auth
         <img
