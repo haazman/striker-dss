@@ -208,7 +208,6 @@ class AddStriker extends Component
     public function updated()
     {
         $this->alternatif = Alternatif::where('team_id', $this->team_id)->get();
-        $this->countVikor();
         $this->resetValidation();
         $this->resetErrorBag();
     }
