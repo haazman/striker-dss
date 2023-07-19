@@ -29,7 +29,6 @@ class AddStriker extends Component
         $bobot = [0.5,0.4,0.2,0.5,0.2,0.6];
 
         $alternatif = Alternatif::where('team_id', $this->team_id)->get()->toArray();
-        var_dump($alternatif);
         foreach($alternatif as $alternatifs){
             array_push($this->altStamina, $alternatifs["stamina"]);
             array_push($this->altPosture, $alternatifs["posture"]);
