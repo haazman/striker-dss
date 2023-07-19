@@ -6,6 +6,7 @@
                     <h1> {{ session('message') }} </h1>
                 </div>
         </div>
+    </div>
         @endif
         @if (session()->has('error'))
             <div class="font-regular relative block w-full rounded-lg bg-gradient-to-tr from-red-600 to-red-400 px-4 py-4 text-base text-white"
@@ -30,7 +31,6 @@
                     </div>
                 </div>
             </div>
-    </div>
     @endif
 
     @if ($register)
@@ -158,20 +158,23 @@
             </div>
         </div>
     @endif
+
+    
 </div>
 
 <div wire:loading>
-    <div data-dialog-backdrop="dialog-xs" data-dialog-backdrop-close="true"
-        class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
-        <div wire:ignore data-dialog="dialog-xs"
-            class="relative m-4 w-fit rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
-            <div
-                class="flex justify-center m-5 p-2 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
-                <div
-                    class="border-t-transparent border-solid animate-spin  rounded-full border-blue-700 border-8 h-12 w-12">
-                </div>
-            </div>
+  <div data-dialog-backdrop="dialog-xs" data-dialog-backdrop-close="true"
+      class="pointer-events-none fixed inset-0 z-[999] grid h-screen w-screen place-items-center bg-black bg-opacity-60 opacity-0 backdrop-blur-sm transition-opacity duration-300">
+      <div wire:ignore data-dialog="dialog-xs"
+          class="relative m-4 w-fit rounded-lg bg-white font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased shadow-2xl">
+          <div
+              class="flex justify-center m-5 p-2 font-sans text-base font-light leading-relaxed text-blue-gray-500 antialiased">
+              <div
+                  class="border-t-transparent border-solid animate-spin  rounded-full border-blue-700 border-8 h-12 w-12">
+              </div>
+          </div>
 
-        </div>
-    </div>
+      </div>
+  </div>
 </div>
+
