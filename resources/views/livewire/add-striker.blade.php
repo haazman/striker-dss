@@ -110,7 +110,7 @@
                         </div>
 
                     </div>
-                    <div class="hidden opacity-0 flex justify-center w-full" id="addCandidates" wire:ignore.self
+                    <div class="hidden opacity-0 flex flex-col gap-3 items-center justify-center w-full" id="addCandidates" wire:ignore.self
                         role="tabpanel">
                         <div class="shadow-md border bg-white w-full rounded-lg">
                             <form>
@@ -276,7 +276,7 @@
                                             Search Candidate
                                         </label>
                                     </div>
-                                    <table class="w-full rounded-lg border text-center border-none shadow-lg mb-5">
+                                    <table wire:model="candidateTable" class="w-full rounded-lg border text-center border-none shadow-lg mb-5">
                                         <tr class="bg-slate-50">
                                             <td> No. </td>
                                             <td> Name </td>
@@ -290,8 +290,8 @@
                                                     <div class="flex flex-row justify-center gap-3">
                                                         <a href="{{ url('showCandidate/' . $alternatifs->id) }}"> <i
                                                                 class="material-icons"> visibility </i> </button>
-                                                            <a href="{{ url('editCandidate/' . $alternatifs->id) }}"> <i
-                                                                    class="material-icons"> edit </i> </a>
+                                                            <a href="{{ url('editCandidate/' . $alternatifs->id) }}">
+                                                                <i class="material-icons"> edit </i> </a>
                                                             <button
                                                                 onclick="confirm('Are you sure you want to delete this candidate?') || event.stopImmediatePropagation()"
                                                                 wire:click.prevent="deleteCandidateId({{ $alternatifs->id }})">
@@ -306,6 +306,70 @@
                             <div class="m-3">
                                 {{ $alternatif->links() }}
                             </div>
+                            </div>
+                            @if($team_id !== null)
+                            @if($alternatifBest !== null)
+                            <div class="shadow-md border flex justify-center bg-white w-full rounded-lg">
+                                <div class="flex justify-center m-5 w-11/12">
+                                <h1 class="text-2xl font-thin"> Best striker for {{$alternatifBest->team_name}} is: {{$alternatifBest->name}} </h1>
+                                    </div>
+                            </div>
+
+                            <div class="shadow-md border flex justify-center bg-white w-full rounded-lg">
+                                <div class="flex flex-col items-center justify-center m-3 w-11/12">
+                                <h1 class="text-3xl font-thin mb-5"> Ranking </h1>
+
+                                <div class="flex justify-center w-full">
+                                        <table class="w-full rounded-lg border text-center border-none shadow-lg">
+                                            <tr class="bg-slate-50">
+                                                <td> No. </td>
+                                                <td> Name </td>
+                                                <td> Stamina </td>
+                                                <td> Posture </td>
+                                                <td> Finishing </td>
+                                                <td> Dribbling </td>
+                                                <td> Header </td>
+                                                <td> Attitude </td>
+                                                <td> Indeks Vikor </td>
+                                            </tr>
+                                            @foreach ($alternatifSort as $key => $alternatifs)
+                                                <tr class="bg-white rounded-lg">
+                                                    <td class="font-light"> {{ $alternatif->firstItem() + $key }}. </td>
+                                                    <td class="font-light"> {{ $alternatifs->name }} </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->stamina }}
+                                                    </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->posture }}
+                                                    </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->finishing }}
+                                                    </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->dribbling }}
+                                                    </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->header }}
+                                                    </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->attitude }}
+                                                    </td>
+                                                    <td class="font-light">
+                                                        {{ $alternatifs->indeks_vikor }}
+                                                    </td>
+    
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                        
+                                   </div>
+                                   <div class="m-3">
+                                    {{ $alternatifSort->links() }}
+                                </div>
+                                    </div>
+                            </div>
+                            @endif
+                                @endif
                         </div>
                     </div>
                 </div>
