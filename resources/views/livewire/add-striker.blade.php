@@ -74,15 +74,13 @@
                                             </tr>
                                             @foreach ($dataPaginate as $key => $team)
                                                 <tr class="bg-white rounded-lg">
-                                                    <td class="font-light">
-                                                        @if ($edit_mode_index === $key)
-                                                            <input type="text"
-                                                                class=" text-center border border-black rounded-lg"
+                                                    <td class="font-light w-fit">
+                                                        
+                                                            <input type="text"@if ($edit_mode_index !== $key) readonly  @endif
+                                                                class=" text-center @if ($edit_mode_index === $key) border border-gray-400 @endif w-fit rounded-lg"
                                                                 wire:change="updateTeam({{ $key }})"
                                                                 wire:model.defer="teamsArray.{{ $key }}.team_name" />
-                                                        @else
-                                                            {{ $team['team_name'] }}
-                                                        @endif
+                                                       
                                                     </td>
                                                     <td class="font-light">
                                                         <div class="flex flex-row justify-center gap-3">
@@ -303,7 +301,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="m-3">
+                            <div class="flex justify-center m-3">
                                 {{ $alternatif->links() }}
                             </div>
                             </div>
@@ -319,7 +317,7 @@
                                 <div class="flex flex-col items-center justify-center m-3 w-11/12">
                                 <h1 class="text-3xl font-thin mb-5"> Ranking </h1>
 
-                                <div class="flex justify-center w-full">
+                                <div class="flex justify-center overflow-x-scroll lg:overflow-x-auto w-full shadow-lg">
                                         <table class="w-full rounded-lg border text-center border-none shadow-lg">
                                             <tr class="bg-slate-50">
                                                 <td> No. </td>
