@@ -38,7 +38,7 @@ class AddStriker extends Component
         $upload_path = '',
         $candidateId,
         $editedTeam,
-        $edit_mode_index = null;
+        $edit_mode_index = null, $altStamina = [], $altPosture = [], $altFinishing = [], $altDribbling = [], $altHeader = [], $altAttitude = [];
     public $file;
     public $filepath = '';
     public $success = 0;
@@ -47,6 +47,88 @@ class AddStriker extends Component
     public $searchTeam;
     public $searchCandidate;
     public $teamsArray = [];
+
+    public function countVikor()
+    {
+
+        $bobot = [0.5, 0.4, 0.2, 0.5, 0.2, 0.6];
+
+        $alternatif = Alternatif::where('team_id', $this->team_id)->get()->toArray();
+        
+        if (count($alternatif) > 1) {
+            foreach ($alternatif as $alternatifs) {
+                array_push($this->altStamina, $alternatifs["stamina"]);
+                array_push($this->altPosture, $alternatifs["posture"]);
+                array_push($this->altFinishing, $alternatifs["finishing"]);
+                array_push($this->altDribbling, $alternatifs["dribbling"]);
+                array_push($this->altHeader, $alternatifs["header"]);
+                array_push($this->altAttitude, $alternatifs["attitude"]);
+            }
+            $maxSta = max($this->altStamina);
+            $maxPos = max($this->altStamina);
+            $maxFin = max($this->altStamina);
+            $maxDri = max($this->altStamina);
+            $maxHea = max($this->altStamina);
+            $maxAtt = max($this->altStamina);
+
+            $minSta = min($this->altStamina);
+            $minPos = min($this->altStamina);
+            $minFin = min($this->altStamina);
+            $minDri = min($this->altStamina);
+            $minHea = min($this->altStamina);
+            $minAtt = min($this->altStamina);
+
+            $RSta = [];
+            $RPos = [];
+            $RFin = [];
+            $RDri = [];
+            $RHea = [];
+            $RAtt = [];
+            foreach ($alternatif as $index => $alternatifs) {
+                array_push($RSta, (($maxSta - $this->altStamina[$index]) / ($maxSta - $minSta)) * $bobot[0]);
+                array_push($RPos, (($maxPos - $this->altPosture[$index]) / ($maxPos - $minPos)) * $bobot[1]);
+                array_push($RFin, (($maxFin - $this->altFinishing[$index]) / ($maxFin - $minFin)) * $bobot[2]);
+                array_push($RDri, (($maxDri - $this->altDribbling[$index]) / ($maxDri - $minDri)) * $bobot[3]);
+                array_push($RHea, (($maxHea - $this->altHeader[$index]) / ($maxHea - $minHea)) * $bobot[4]);
+                array_push($RAtt, (($maxAtt - $this->altAttitude[$index]) / ($maxAtt - $minAtt)) * $bobot[5]);
+            }
+            $UM = [];
+            $SM = [];
+            foreach ($alternatif as $index => $alternatifs) {
+                $UM[$index] = max($RSta[$index], $RFin[$index], $RDri[$index], $RHea[$index], $RAtt[$index]);
+                $SM[$index] = $RSta[$index] + $RFin[$index] + $RDri[$index] + $RHea[$index] + $RAtt[$index];
+            }
+
+            $UMmin = min($UM);
+            $UMmax = max($UM);
+            $SMmin = min($SM);
+            $SMmax = max($SM);
+
+            $Qi = [
+            ];
+
+            foreach ($alternatif as $index => $alternatifs) {
+                $Qi[$index] = [
+                    "id" => $alternatifs["id"],
+                    "vikor" => 0.5 * ($SM[$index] - $SMmax) / ($SMmax - $SMmin) + (1 - 0.5) * (($UM[$index] - $UMmax) / ($UMmax - $UMmin))
+                ];
+            }
+
+            foreach ($alternatif as $index => $alternatifs) {
+                foreach ($Qi as $Qis) {
+                    if($Qis["id"] == $alternatifs["id"]){
+                        $alternatifUpdate = Alternatif::find($alternatifs["id"]);
+
+                $alternatifUpdate->update(
+                    [
+                        'indeks_vikor' => $Qi[$index]["vikor"]
+                    ]
+                );
+                    }
+                }
+            }
+        }
+    }
 
     public function render()
     {
@@ -68,6 +150,7 @@ class AddStriker extends Component
         } else {
             $alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
         }
+        $alternatifSort = Alternatif::where('team_id', $this->team_id)->orderBy('indeks_vikor', 'asc')->paginate(5);
         $dataPaginate = $this->paginate($this->teamsArray);
 
         return view('livewire.add-striker', [
@@ -75,6 +158,7 @@ class AddStriker extends Component
             'teamsArray' => $this->teamsArray,
             'teamsAll' => Team::where('user_id', Auth::user()->id)->get(),
             'alternatif' => $alternatif,
+            'alternatifSort' => $alternatifSort
         ]);
     }
 
@@ -101,6 +185,7 @@ class AddStriker extends Component
             $candidate->delete();
         }
         $alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
+        $this->countVikor();
         session()->flash('message', 'Deleted Successfully');
     }
 
@@ -212,6 +297,7 @@ class AddStriker extends Component
         }
 
         Alternatif::create($data);
+        $this->countVikor();
 
         session()->flash('message', 'Candidate Added Successfully.');
 
@@ -225,6 +311,7 @@ class AddStriker extends Component
     public function updated()
     {
         $alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
+        $alternatifSort = Alternatif::where('team_id', $this->team_id)->orderBy('indeks_vikor', 'asc')->paginate(5);
         $this->resetValidation();
         $this->resetErrorBag();
         $this->resetPage();

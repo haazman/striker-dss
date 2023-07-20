@@ -290,8 +290,8 @@
                                                     <div class="flex flex-row justify-center gap-3">
                                                         <a href="{{ url('showCandidate/' . $alternatifs->id) }}"> <i
                                                                 class="material-icons"> visibility </i> </button>
-                                                            <a href="{{ url('editCandidate/' . $alternatifs->id) }}"> <i
-                                                                    class="material-icons"> edit </i> </a>
+                                                            <a href="{{ url('editCandidate/' . $alternatifs->id) }}">
+                                                                <i class="material-icons"> edit </i> </a>
                                                             <button
                                                                 onclick="confirm('Are you sure you want to delete this candidate?') || event.stopImmediatePropagation()"
                                                                 wire:click.prevent="deleteCandidateId({{ $alternatifs->id }})">
@@ -306,6 +306,58 @@
                             <div class="m-3">
                                 {{ $alternatif->links() }}
                             </div>
+
+                            <h1> Ranking: </h1>
+                            <div class="flex justify-center w-full">
+                                    <table class="w-full rounded-lg border text-center border-none shadow-lg mb-5">
+                                        <tr class="bg-slate-50">
+                                            <td> No. </td>
+                                            <td> Name </td>
+                                            <td> Stamina </td>
+                                            <td> Posture </td>
+                                            <td> Finishing </td>
+                                            <td> Dribbling </td>
+                                            <td> Header </td>
+                                            <td> Attitude </td>
+                                            <td> Indeks Vikor </td>
+                                        </tr>
+                                        @foreach ($alternatifSort as $key => $alternatifs)
+                                            <tr class="bg-white rounded-lg">
+                                                <td class="font-light"> {{ $alternatif->firstItem() + $key }}. </td>
+                                                <td class="font-light"> {{ $alternatifs->name }} </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->stamina }}
+                                                </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->posture }}
+                                                </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->finishing }}
+                                                </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->dribbling }}
+                                                </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->header }}
+                                                </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->attitude }}
+                                                </td>
+                                                <td class="font-light">
+                                                    {{ $alternatifs->indeks_vikor }}
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-3">
+                                {{ $alternatifSort->links() }}
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
