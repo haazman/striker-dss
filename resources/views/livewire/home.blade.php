@@ -1,5 +1,6 @@
+<div class="flex flex-row items-start mt-14">
 <div data-aos="fade-left"
-    class="flex flex-col md:flex-row w-full items-center justify-center md:justify-between min-h-screen">
+    class="flex flex-col md:flex-row w-full items-center justify-center md:justify-between">
     <div class="flex flex-col w-full items-center justify-center gap-10">
         <h1 class="text-3xl lg:text-5xl font-sans font-thin mx-10"> Striker DSS </h1>
         <p class="mx-10 font-sans text-lg lg:text-xl font-light leading-relaxed text-inherit antialiased">
@@ -9,8 +10,9 @@
     </div>
     <img class="w-full" src="assets/soccer.png">
 </div>
+</div>
 
-<div class="flex w-full flex-col items-center gap-24 justify-center">
+<div class="flex w-full flex-col items-center gap-24 mt-24 justify-center">
     <h1 data-aos="fade" class="text-3xl lg:text-5xl text-center font-sans font-light"> Choose Your Striker </h1>
     <div data-aos="fade-right" class="flex flex-row justify-between">
         <img src="assets/soccer-2.png" class="hidden lg:flex w-1/2">

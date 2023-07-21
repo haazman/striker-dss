@@ -38,7 +38,6 @@ class AddStriker extends Component
         $upload_path = '',
         $candidateId,
         $editedTeam,
-        $candidateTable,
         $edit_mode_index = null;
     public $file;
     public $filepath = '';

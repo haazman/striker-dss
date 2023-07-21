@@ -4,8 +4,8 @@
             <h1 class="text-5xl font-light"> {{ $team->team_name }} </h1>
             <h1 class="text-2xl font-light"> Striker Candidates: </h1>
 
-            <div class="flex flex-col lg:flex-row justify-center items-center flex-wrap w-full">
-                <div class="flex justify-start flex-wrap gap-1">
+            <div class="flex justify-center items-center w-full">
+                <div class="flex flex-col lg:flex-row justify-start flex-wrap gap-2">
                     @foreach ($alternatif as $alternatifs)
                         <div class="flex flex-row items-center gap=2 bg-slate-50 border p-3 shadow-md rounded-lg">
                             <a href="{{ url('showCandidate/' . $alternatifs->id) }}">
