@@ -8,13 +8,13 @@
                         <a class="text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
                             data-tab-target="" active="" role="tab" aria-selected="true"
                             aria-controls="addCandidates">
-                            <span class="ml-1 text-white">Candidates</span>
+                            <span class="ml-1 text-white">Add Candidates</span>
                         </a>
                     </li>
                     <li class="z-30 flex-auto text-center">
                         <a class="text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
                             data-tab-target=""  role="tab" aria-selected="false" aria-controls="addTeam">
-                            <span class="ml-1 text-white">Teams</span>
+                            <span class="ml-1 text-white">Add Teams</span>
                         </a>
                     </li>
                 </ul>
