@@ -7,21 +7,21 @@
                     <li class="z-30 flex-auto text-center">
                         <a class="text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
                             data-tab-target="" active="" role="tab" aria-selected="true"
-                            aria-controls="addTeam">
-                            <span class="ml-1 text-white">Teams</span>
+                            aria-controls="addCandidates">
+                            <span class="ml-1 text-white">Candidates</span>
                         </a>
                     </li>
                     <li class="z-30 flex-auto text-center">
                         <a class="text-slate-700 z-30 mb-0 flex w-full cursor-pointer items-center justify-center rounded-lg border-0 bg-inherit px-0 py-1 transition-all ease-in-out"
-                            data-tab-target="" role="tab" aria-selected="false" aria-controls="addCandidates">
-                            <span class="ml-1 text-white">Candidates</span>
+                            data-tab-target=""  role="tab" aria-selected="false" aria-controls="addTeam">
+                            <span class="ml-1 text-white">Teams</span>
                         </a>
                     </li>
                 </ul>
                 <div data-tab-content="" class="p-5">
 
                     <!-- Add Team -->
-                    <div class="block opacity-100" wire:ignore.self id="addTeam" role="tabpanel">
+                    <div class="hidden opacity-0 flex flex-col gap-5 items-center justify-center w-full" wire:ignore.self id="addTeam" role="tabpanel">
                         <div class="flex flex-col w-full items-center justify-center">
                             <div class="shadow-md border bg-white w-full md:w-full rounded-lg">
                                 <div class="flex flex-col gap-10 justify-center w-full items-center mt-10">
@@ -108,7 +108,7 @@
                         </div>
 
                     </div>
-                    <div class="hidden opacity-0 flex flex-col gap-5 items-center justify-center w-full" id="addCandidates" wire:ignore.self
+                    <div class="flex flex-col gap-5 items-center justify-center w-full" id="addCandidates" wire:ignore.self
                         role="tabpanel">
                         <div class="shadow-md border bg-white w-full rounded-lg">
                             <form>
@@ -297,7 +297,6 @@
                                     </div>
                                 </div>
                                 <!-- Add Candidate Modal -->
-                            </form>
 
                             <div class="flex justify-center w-full">
                                 <div class="flex flex-col gap-5 items-center w-11/12">
