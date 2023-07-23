@@ -43,11 +43,6 @@
                   Dashboard
                 </a>
               </li>
-              <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
-                <a class="flex items-center" href="#">
-                  Compare
-                </a>
-              </li>
               @endauth
             </ul>
             @guest
@@ -62,7 +57,11 @@
             @auth
         <img
         alt="tania andrew"
-        src="{{asset('storage/'.Auth::user()->image_path)}}"
+        src=" @if(Auth::user()->image_path !== 'assets/default/default.jpg')
+        {{asset('storage/'.Auth::user()->image_path)}}
+        @else
+        {{url(Auth::user()->image_path)}}
+        @endif"
         class="hidden relative lg:inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
         data-popover-target="profile-menu"
       />
@@ -196,11 +195,6 @@
                 </li>
                 <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
                   <a class="flex items-center" href="#">
-                    Compare
-                  </a>
-                </li>
-                <li class="block p-1 font-sans text-sm font-normal leading-normal text-inherit antialiased">
-                  <a class="flex items-center" href="#">
                     Edit Profile
                   </a>
                 </li>
@@ -226,7 +220,14 @@
           <div class="flex items-center flex-row gap-2">
         <img
         alt="tania andrew"
-        src="{{asset('storage/'.Auth::user()->image_path)}}"
+        src="
+        @if(Auth::user()->image_path !== 'assets/default/default.jpg')
+        {{asset('storage/'.Auth::user()->image_path)}}
+        @else
+        {{url(Auth::user()->image_path)}}
+        @endif
+        "
+    
         class="relative inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
         data-popover-target="profile-menu"
       />
@@ -241,9 +242,9 @@
         </div>
       </nav>
      
-      <div>
+
     {{$slot}}
-      </div>
+
    
     <footer class="w-full bg-white p-8">
         <div class="flex flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">

@@ -10,7 +10,11 @@
                         <div class="flex flex-row items-center gap=2 bg-slate-50 border p-3 shadow-md rounded-lg">
                             <a href="{{ url('showCandidate/' . $alternatifs->id) }}">
                                 <img class="relative inline-block h-12 w-12 rounded-full object-cover object-center"
-                                    src="{{ asset('storage/' . $alternatifs->image_path) }}">
+                                    src="@if($alternatifs->image_path !== 'assets/default/default.jpg')
+                                    {{asset('storage/'.$alternatifs->image_path)}}
+                                    @else
+                                    {{url($alternatifs->image_path)}}
+                                    @endif">
                                 {{ $alternatifs->name }}
                             </a>
                         </div>

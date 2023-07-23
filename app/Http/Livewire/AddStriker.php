@@ -12,6 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class AddStriker extends Component
@@ -38,6 +39,7 @@ class AddStriker extends Component
         $upload_path = '',
         $candidateId,
         $editedTeam,
+        $candidateForm,
         $edit_mode_index = null;
     public $file;
     public $filepath = '';
@@ -127,6 +129,10 @@ class AddStriker extends Component
                 );
             }
         }
+    }
+
+    public function mount(){
+        $this->team_id = Cache::get('team_id');
     }
 
     public function render()
@@ -256,13 +262,13 @@ class AddStriker extends Component
     {
         $this->validate([
             'team_id' => 'required',
-            'candidateName' => 'required',
-            'stamina' => 'required',
-            'posture' => 'required',
-            'finishing' => 'required',
-            'dribbling' => 'required',
-            'header' => 'required',
-            'attitude' => 'required',
+            'candidateName' => 'required | string',
+            'stamina' => 'required | min:0 | integer',
+            'posture' => 'required | min:0 | integer',
+            'finishing' => 'required | min:0 | integer',
+            'dribbling' => 'required | min:0 | integer',
+            'header' => 'required | min:0 | integer',
+            'attitude' => 'required | min:0 | integer',
         ]);
 
         if ($this->photo) {
@@ -298,6 +304,8 @@ class AddStriker extends Component
 
         Alternatif::create($data);
 
+        $this->dispatchBrowserEvent('candidateAdded');
+
         session()->flash('message', 'Candidate Added Successfully.');
 
         $this->resetInputFields();
@@ -309,10 +317,9 @@ class AddStriker extends Component
     }
 
     public function updated()
-    {
+    {   
+        Cache::put('team_id', $this->team_id);
         $this->countVikor();
-        $alternatif = Alternatif::where('team_id', $this->team_id)->paginate(5);
-        $alternatifSort = Alternatif::where('team_id', $this->team_id)->orderBy('indeks_vikor', 'asc')->paginate(5);
         $this->resetValidation();
         $this->resetErrorBag();
         $this->resetPage();

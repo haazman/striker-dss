@@ -25,7 +25,7 @@
                         <div class="flex flex-col w-full items-center justify-center">
                             <div class="shadow-md border bg-white w-full md:w-full rounded-lg">
                                 <div class="flex flex-col gap-10 justify-center w-full items-center mt-10">
-                                    <div class="relative h-11 w-11/12 min-w-[200px]">
+                                    <div class="relative h-11 w-11/12">
                                         <input type="text" wire:model="team_name" placeholder="Team Name"
                                             class="peer h-full w-full border-b border-blue-gray-400 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-400 focus:border-blue-700 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50" />
                                         <label
@@ -57,7 +57,7 @@
                                     </h3>
 
                                     <div class="flex flex-col items-center w-full">
-                                        <div class="relative mb-5 h-11 w-11/12 min-w-[200px]">
+                                        <div class="relative mb-5 h-11 w-11/12">
                                             <input type="text" wire:model="searchTeam"
                                                 class="peer h-full w-full lg:w-1/4 rounded-lg border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-400 placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                 placeholder=" " />
@@ -113,7 +113,7 @@
                         <div class="shadow-md border bg-white w-full rounded-lg">
                             <form>
                                 <div class="flex flex-col gap-10 justify-center items-center mt-10 mb-5">
-                                    <div class="relative h-10 w-11/12 min-w-[200px]">
+                                    <div class="relative h-10 w-11/12">
                                         <select wire:model="team_id"
                                             class="peer h-full w-full rounded-[7px] border border-gray-400 border-t-transparent bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-700 placeholder-shown:border-t-blue-700 empty:!bg-red-700 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50">
                                             <option>...</option>
@@ -169,7 +169,7 @@
                                                     @else
                                                         <img class="relative inline-block h-36 w-36 rounded-full object-cover object-center"
                                                             alt="Image placeholder"
-                                                            src="{{ asset('storage/candidate/default.jpg') }}">
+                                                            src="{{url('assets/default/default.jpg')}}">
                                                     @endif
                                                 </label>
                                                 @error('photo')
@@ -177,8 +177,9 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="relative h-11 w-full min-w-[200px]">
-                                                <input type="text" wire:model.defer="candidateName"
+                                            <div class="flex flex-col w-full">
+                                            <div class="relative h-11 w-full">
+                                                <input type="text" wire:model="candidateName"
                                                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                     placeholder=" " />
                                                 <label
@@ -186,10 +187,15 @@
                                                     Name
                                                 </label>
                                             </div>
+                                            @error('candidateName')
+                                            <span class="text-red-700">{{ $message }}</span>
+                                        @enderror
+                                        </div>
                                             <div
                                                 class="flex flex-col w-full lg:flex-row gap-2 lg:gap-1 lg:justify-between">
-                                                <div class="relative h-11 w-full lg:w-1/3 min-w-[200px]">
-                                                    <input type="number" wire:model.defer="stamina"
+                                                <div class="flex flex-col w-full">
+                                                <div class="relative h-11 w-full">
+                                                    <input type="number" min="0" wire:model="stamina"
                                                         class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                         placeholder=" " />
                                                     <label
@@ -197,9 +203,14 @@
                                                         Stamina
                                                     </label>
                                                 </div>
-
-                                                <div class="relative h-11 w-full lg:w-1/3min-w-[200px]">
-                                                    <input type="number" wire:model.defer="posture"
+                                                    @error('stamina')
+                                                <span class="text-red-700">{{ $message }}</span>
+                                            @enderror
+                                                </div>
+                                                
+                                                <div class="flex flex-col w-full">
+                                                <div class="relative h-11">
+                                                    <input type="number" wire:model="posture"
                                                         class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                         placeholder=" " />
                                                     <label
@@ -207,9 +218,14 @@
                                                         Posture
                                                     </label>
                                                 </div>
-
-                                                <div class="relative h-11 w-full lg:w-1/3 min-w-[200px]">
-                                                    <input type="number" wire:model.defer="finishing"
+                                                @error('posture')
+                                                <span class="text-red-700">{{ $message }}</span>
+                                            @enderror
+                                            </div>
+                                            
+                                            <div class="flex flex-col w-full">
+                                                <div class="relative h-11 w-full">
+                                                    <input type="number" wire:model="finishing"
                                                         class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                         placeholder=" " />
                                                     <label
@@ -217,11 +233,17 @@
                                                         Finishing
                                                     </label>
                                                 </div>
+                                                @error('finishing')
+                                                <span class="text-red-700">{{ $message }}</span>
+                                            @enderror
+                                            </div>
                                             </div>
 
+                                            
                                             <div class="flex flex-col lg:flex-row gap-2 justify-between">
-                                                <div class="relative h-11 w-full min-w-[200px]">
-                                                    <input type="number" wire:model.defer="dribbling"
+                                                <div class="flex flex-col w-full">
+                                                <div class="relative h-11 w-full">
+                                                    <input type="number" wire:model="dribbling"
                                                         class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                         placeholder=" " />
                                                     <label
@@ -229,9 +251,14 @@
                                                         Dribbling
                                                     </label>
                                                 </div>
+                                                @error('dribbling')
+                                                <span class="text-red-700">{{ $message }}</span>
+                                            @enderror
+                                            </div>    
 
-                                                <div class="relative h-11 w-full min-w-[200px]">
-                                                    <input type="number" wire:model.defer="header"
+                                            <div class="flex flex-col w-full">
+                                                <div class="relative h-11 w-full">
+                                                    <input type="number" wire:model="header"
                                                         class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                         placeholder=" " />
                                                     <label
@@ -239,9 +266,14 @@
                                                         Header
                                                     </label>
                                                 </div>
+                                                @error('header')
+                                                <span class="text-red-700">{{ $message }}</span>
+                                            @enderror
+                                            </div>
 
-                                                <div class="relative h-11 w-full min-w-[200px]">
-                                                    <input type="number" wire:model.defer="attitude"
+                                            <div class="flex flex-col w-full">
+                                                <div class="relative h-11 w-full">
+                                                    <input type="number" wire:model="attitude"
                                                         class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                                         placeholder=" " />
                                                     <label
@@ -249,10 +281,14 @@
                                                         Attitude
                                                     </label>
                                                 </div>
+                                                @error('attitude')
+                                                <span class="text-red-700">{{ $message }}</span>
+                                            @enderror
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="p-6 pt-0">
-                                            <button wire:click="insertCandidate" data-dialog-close="true"
+                                            <button wire:click="insertCandidate" id="closeCandidate"
                                                 class="block w-full select-none rounded-lg bg-gradient-to-tr from-blue-700 to-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-700/20 transition-all hover:shadow-lg hover:shadow-blue-700/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 type="button" data-ripple-light="true">
                                                 Add Candidate
@@ -265,7 +301,7 @@
 
                             <div class="flex justify-center w-full">
                                 <div class="flex flex-col gap-5 items-center w-11/12">
-                                    <div class="relative h-11 w-full min-w-[200px]">
+                                    <div class="relative h-11 w-full">
                                         <input type="text" wire:model="searchCandidate"
                                             class="peer h-full w-full lg:w-1/4 rounded-lg border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-gray-400 placeholder-shown:border-t-blue-gray-400 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                                             placeholder=" " />
@@ -375,3 +411,26 @@
         </div>
     </div>
 </div>
+
+@livewireScripts
+<script>
+    document.addEventListener('livewire:load', function () {
+        // Save data to localStorage
+        function saveDataLocally(data) {
+            localStorage.setItem('$team_id', data);
+        }
+
+        // Retrieve data from localStorage
+        function getSavedData() {
+            return localStorage.getItem('$team_id') || null;
+        }
+
+        Livewire.hook('component.initialized', function(component) {
+            component.set('$team_id', getSavedData());
+        });
+
+        Livewire.on('saveData', function(data) {
+            saveDataLocally(data);
+        });
+    });
+</script>

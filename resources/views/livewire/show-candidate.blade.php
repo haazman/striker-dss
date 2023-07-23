@@ -1,5 +1,5 @@
 <div class="flex items-start justify-center min-h-screen">
-    <div class="m-10 flex flex-col shadow-lg rounded-lg bg-slate-white border items-center gap-4 p-6">
+    <div class="m-10 flex flex-col w-full lg:w-1/2 shadow-lg rounded-lg bg-slate-white border items-center gap-4 p-6 bg-white">
         <h3 class="block font-sans text-4xl font-light leading-snug tracking-normal text-black antialiased">
             Striker Profile
         </h3>
@@ -7,7 +7,11 @@
         <div class="flex flex-col items-center justify-center">
             <input readonly type="file" accept="image/png, image/jpeg, image/jpg" class="hidden" id="photo">
             <label for="photo">
-                <img src="{{ asset('storage/' . $alternatif->image_path) }}"
+                <img src=" @if($alternatif->image_path !== 'assets/default/default.jpg')
+                {{asset('storage/'.$alternatif->image_path)}}
+                @else
+                {{url($alternatif->image_path)}}
+                @endif"
                     class="relative inline-block h-36 w-36 rounded-full object-cover object-center"
                     alt="Image placeholder">
             </label>
@@ -16,7 +20,7 @@
             @enderror
         </div>
 
-        <div class="relative h-11 w-full min-w-[200px]">
+        <div class="relative h-11 w-full">
             <input readonly value="{{ $alternatif->name }}" type="text"
                 class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                 placeholder=" " />
@@ -26,7 +30,7 @@
             </label>
         </div>
         <div class="flex flex-col w-full lg:flex-row gap-2 lg:gap-1 lg:justify-between">
-            <div class="relative h-11 w-full lg:w-1/3 min-w-[200px]">
+            <div class="relative h-11 w-full">
                 <input readonly type="number" value="{{ $alternatif->stamina }}"
                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " />
@@ -36,7 +40,7 @@
                 </label>
             </div>
 
-            <div class="relative h-11 w-1/3 min-w-[200px]">
+            <div class="relative h-11 w-full">
                 <input readonly type="number" value="{{ $alternatif->posture }}"
                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " />
@@ -46,7 +50,7 @@
                 </label>
             </div>
 
-            <div class="relative h-11 w-1/3 min-w-[200px]">
+            <div class="relative h-11 w-full">
                 <input readonly type="number" value="{{ $alternatif->finishing }}"
                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " />
@@ -57,8 +61,8 @@
             </div>
         </div>
 
-        <div class="flex flex-row gap-2 justify-between">
-            <div class="relative h-11 w-full min-w-[200px]">
+        <div class="flex flex-col w-full lg:flex-row gap-2 lg:gap-1 lg:justify-between">
+            <div class="relative h-11 w-full">
                 <input readonly type="number" value="{{ $alternatif->dribbling }}"
                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " />
@@ -68,7 +72,7 @@
                 </label>
             </div>
 
-            <div class="relative h-11 w-full min-w-[200px]">
+            <div class="relative h-11 w-full">
                 <input readonly type="number" value="{{ $alternatif->header }}"
                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " />
@@ -78,7 +82,7 @@
                 </label>
             </div>
 
-            <div class="relative h-11 w-full min-w-[200px]">
+            <div class="relative h-11 w-full">
                 <input readonly type="number" value="{{ $alternatif->attitude }}"
                     class="peer h-full w-full rounded-md border border-black border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-black placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-blue-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " />

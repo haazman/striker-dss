@@ -27,7 +27,6 @@ Route::get('/add', AddStriker::class)->middleware('auth');
 Route::get('/showTeam/{id}', ShowTeam::class)->middleware('auth');
 Route::get('/showCandidate/{id}', ShowCandidate::class)->middleware('auth');
 Route::get('/editCandidate/{id}', EditCandidate::class)->middleware('auth');
-Route::get('/count', Counter::class);
 Route::get('/signin', Authenticate::class)->name('login');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 
