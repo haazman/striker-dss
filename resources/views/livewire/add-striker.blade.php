@@ -53,7 +53,7 @@
                                 <div class="flex flex-col gap-1 mt-10 w-full items-center justify-center">
                                     <h3
                                         class="block font-sans mb-5 text-2xl font-thin leading-snug tracking-normal text-inherit antialiased">
-                                        Team List
+                                        Teams
                                     </h3>
 
                                     <div class="flex flex-col items-center w-full">
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="w-full flex flex-col items-center mb-5">
                                     <div class="flex flex-row items-center justify-between w-11/12">
-                                        <h1> Candidate: </h1>
+                                        <h1> Candidates: </h1>
                                         <button
                                             class="select-none rounded-lg bg-blue-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-700/20 transition-all hover:shadow-lg hover:shadow-blue-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                             type="button" data-dialog-target="sign-in-dialog">
